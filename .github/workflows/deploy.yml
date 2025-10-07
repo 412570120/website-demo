@@ -1,0 +1,39 @@
+name: Deploy Website to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 取得專案
+        uses: actions/checkout@v4
+
+      - name: 檢查 HTML 是否存在
+        run: |
+          if [ ! -f index.html ]; then
+            echo "找不到 index.html！"
+            exit 1
+          fi
+          echo "檢查完成，HTML 檔案存在！"
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: 再次下載專案
+        uses: actions/checkout@v4
+
+      - name: 設定 GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: 上傳網站檔案
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./
+
+      - name: 發布到 GitHub Pages
+        uses: actions/deploy-pages@v4
