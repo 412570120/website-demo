@@ -9,7 +9,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -28,6 +28,12 @@ jobs:
   deploy:
     needs: test
     runs-on: ubuntu-latest
+
+    # 💡 關鍵：加上 environment（修正 Missing environment 錯誤）
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: 再次下載專案
         uses: actions/checkout@v4
@@ -41,4 +47,6 @@ jobs:
           path: ./
 
       - name: 發布到 GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
+
