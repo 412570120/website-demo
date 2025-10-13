@@ -1,0 +1,34 @@
+name: Auto Minify Files
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  minify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install -g clean-css-cli html-minifier-terser
+
+      - name: Minify CSS
+        run: npx clean-css-cli -o css/style.min.css css/style.css
+
+      - name: Minify HTML
+        run: npx html-minifier-terser index.html -o index.min.html --collapse-whitespace --remove-comments
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Auto-minify files"
+          git push
