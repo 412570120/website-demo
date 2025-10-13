@@ -1,0 +1,57 @@
+/* 🎨 基本頁面設定 */
+body {
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    background-color: #f9fafb;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* 🏷️ 頁首 */
+header {
+    background-color: #2563eb;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* 📖 主內容 */
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* 🔗 超連結樣式 */
+a {
+    color: #2563eb;
+    text-decoration: none;
+    transition: 0.2s;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* 📷 圖片設定 */
+img {
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    max-width: 90%;
+    height: auto;
+}
+
+/* 🦶 頁尾 */
+footer {
+    text-align: center;
+    color: #666;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    border-top: 1px solid #e5e7eb;
+    background-color: #f1f5f9;
+}
